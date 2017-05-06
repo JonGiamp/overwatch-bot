@@ -40,7 +40,7 @@ bot.hear('ask me something', (payload, chat) => {
   chat.conversation( convo => askName(convo) );
 
   const askName = convo => {
-    convo.ask(`What's your name ?`, (payload, chat) => {
+    convo.ask(`What's your name ?`, (payload, convo) => {
       const text = payload.message.text;
       convo.set('name', text);
       convo.say(`Oh ! Your name is ${text}`).then( () => askFavoriteFood(convo) );
@@ -48,7 +48,7 @@ bot.hear('ask me something', (payload, chat) => {
   }
 
   const askFavoriteFood = convo => {
-    convo.ask(`What's your favorite food ?`, (payload, chat) => {
+    convo.ask(`What's your favorite food ?`, (payload, convo) => {
       const text = payload.message.text;
       convo.set('food', text);
       convo.say(`I'm agree, ${text} is very good !`).then( () => sendSummary(convo) );
