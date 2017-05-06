@@ -29,6 +29,20 @@ bot.hear(['food','hungry'], (payload, chat) => {
   });
 });
 
+bot.hear('color', (payload, chat) => {
+  chat.say({
+  	text: 'Favorite color?',
+  	quickReplies: ['Red', 'Blue', 'Green']
+  });
+});
+
+bot.hear('video', (payload, chat) => {
+  chat.say({
+  	attachment: 'video',
+  	url: 'https://www.youtube.com/embed/6hzWbk69A80'
+  });
+});
+
 bot.hear('image', (payload, chat) => {
   chat.say({
     attachment: 'image',
