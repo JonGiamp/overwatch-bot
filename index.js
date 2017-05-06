@@ -37,7 +37,7 @@ bot.hear('image', (payload, chat) => {
 });
 
 bot.hear('ask me something', (payload, chat) => {
-  bot.conversation( convo => askName(convo) );
+  chat.conversation( convo => askName(convo) );
 
   const askName = convo => {
     convo.ask(`What's your name ?`, (payload, chat) => {
