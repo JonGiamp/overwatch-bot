@@ -37,15 +37,13 @@ bot.hear('image', (payload, chat) => {
 });
 
 bot.hear('ask me something', (payload, chat) => {
-  chat.conversation( convo => askName(convo) );
-
   const askName = convo => {
     convo.ask(`What's your name ?`, (payload, convo) => {
       const text = payload.message.text;
       convo.set('name', text);
       convo.say(`Oh ! Your name is ${text}`).then( () => askFavoriteFood(convo) );
     });
-  }
+  };
 
   const askFavoriteFood = convo => {
     convo.ask(`What's your favorite food ?`, (payload, convo) => {
@@ -61,6 +59,8 @@ bot.hear('ask me something', (payload, chat) => {
       - Food: ${convo.get('food')}`);
     convo.end();
   };
+
+  chat.conversation( convo => askName(convo) );
 });
 
 bot.start(process.env.PORT || 1415);
