@@ -1,0 +1,23 @@
+{
+  "name": "firstbot",
+  "version": "0",
+  "description": "Test first messenger bot",
+  "engines": {
+    "node": "7.9.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JonGiamp/first-bot"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "dependencies": {
+    "bootbot": "^1.0.12"
+  }

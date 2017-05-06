@@ -1,0 +1,7 @@
+{
+  "name": "firstbot",
+  "description": "Test first messenger bot",
+  "repository": "https://github.com/JonGiamp/first-bot",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs"
+}
