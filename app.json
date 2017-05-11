@@ -1,7 +1,7 @@
 {
-  "name": "firstbot",
-  "description": "Test first messenger bot",
-  "repository": "https://github.com/JonGiamp/first-bot",
+  "name": "Overwatch bot",
+  "description": "Ovewatch bot statistics",
+  "repository": "https://github.com/JonGiamp/Overwatch-bot",
   "keywords": ["node", "express", "heroku"],
   "image": "heroku/nodejs"
 }

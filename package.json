@@ -1,7 +1,7 @@
 {
-  "name": "firstbot",
-  "version": "0",
-  "description": "Test first messenger bot",
+  "name": "Overwatch bot",
+  "version": "0.1",
+  "description": "Ovewatch bot statistics",
   "engines": {
     "node": "7.9.0"
   },
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/JonGiamp/first-bot"
+    "url": "https://github.com/JonGiamp/Overwatch-bot"
   },
   "keywords": [
     "node",
