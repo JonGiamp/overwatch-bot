@@ -1,4 +1,7 @@
+const hello = require('./hello');
+const search = require('./search');
+
 module.exports = {
-  hello: require('./hello'),
-  search: require('./search'),
+  hello,
+  search,
 };

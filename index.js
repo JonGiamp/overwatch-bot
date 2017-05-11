@@ -6,12 +6,12 @@ const { hello, search } = require('./bot/interaction');
 const bot = new Bootbot({
   accessToken,
   verifyToken,
-  appSecret
+  appSecret,
 });
 
 // settings
 bot.module(started);
-bot.module(greetings);
+bot.module(greeting);
 bot.module(persistent);
 
 // interaction

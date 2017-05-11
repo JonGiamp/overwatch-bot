@@ -1,5 +1,9 @@
+const greeting = require('./greeting');
+const persistent = require('./persistent');
+const started = require('./started');
+
 module.exports = {
-  greeting: require('./greeting'),
-  persistent: require('./persistent'),
-  started: require('./started')
+  greeting,
+  persistent,
+  started,
 };
