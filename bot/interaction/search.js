@@ -17,8 +17,7 @@ module.exports = (bot) => {
   bot.hear(instruction, (payload, chat) => {
     const fetchData = async (pseudo, platform, region) => {
       const res = await fetch(`https://ow-api.herokuapp.com/profile/${platform}/${region}/${pseudo}`);
-      const data = await res.json();
-      return data;
+      return res.json();
     };
 
     const generateModel = (convo, data) => {
