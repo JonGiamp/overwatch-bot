@@ -2,7 +2,7 @@ const app = require('express')();
 const Bootbot = require('bootbot');
 // const { accessToken, verifyToken, appSecret } = require('./bot/key');
 const { started, greeting, persistent } = require('./bot/settings');
-const { hello, search, help, default } = require('./bot/interaction');
+const { hello, search, help, uncatch } = require('./bot/interaction');
 
 // TODO:
 // *** Search model (ratio, img, url);
@@ -31,7 +31,7 @@ bot.module(persistent);
 bot.module(help);
 bot.module(search);
 bot.module(hello);
-bot.module(default);
+bot.module(uncatch);
 
 app.get('/', (req, res) => res.send('Ce service est le chatbot de BLABLA, il est destiné à être utilisé sur messenger. Vous pouvez interagir avec lui ici : BLABLA'));
 
