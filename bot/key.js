@@ -1,5 +1,5 @@
 module.exports = {
-  accessToken: 'EAADCcjfaZADsBAPeKeAvDUUoZCH3npFo4ZBFkgDt1J5ZBBX8JvTHnPDIy2JZCSwrDboPkI6qTfyyQt5aI0XIfTbhqAuLv81ZCCG33Vra5NFpnI3Dcpajl8gaCEiFLXtAoi7aV7Vb2FiMWO2PeLqlhqrjdnEqwsK9bNiXeJgRpvkwZDZD',
+  accessToken: 'EAAGJU2B3gHkBAPhQaPEHNNDVien0zfnCO2rTx0hDs2AssGeyaNZC2xLVM4i5iKDQZBW82z4Yv3O9FevA2iLKo3Tc3JPlZBdBaNpTzU8yoEUTPcMSsx7FNVteQ3jZA87Ycf9JwkEaYdVZCixpqADMMf8VZAsCSc0ZBfnSIgWHO5a1wZDZD',
   verifyToken: 'TEST_BOT_TOKEN',
-  appSecret: '46c8e6f38c923e241bc040d1a40b6e24',
+  appSecret: 'e8e95a50ad0fe8f9698d802af34fb76e',
 };
