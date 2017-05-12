@@ -13,7 +13,7 @@ module.exports = (bot) => {
     sendHelp(chat);
   });
 
-  bot.on(`postback:${POST_HELP}`, (payload, chat) => {
+  bot.on(`quick_reply:${POST_HELP}`, (payload, chat) => {
     sendHelp(chat);
   });
 };

@@ -1,8 +1,6 @@
 const fetch = require('node-fetch');
 const quickReplies = require('../quickReplies');
 
-// TODO: Rewrite this shit.
-
 // model: keywords pc|xbl|psn
 const instruction = /^(\s*)((re)?chercher*|search|find)(\s*)(([^ ]{3,12})#\d{4,5}(\s*)|[a-zA-Z0-9 ]{1,15}|[a-zA-Z0-9_-]{3,16})(\s*)$/i;
 
