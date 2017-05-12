@@ -1,5 +1,5 @@
-const platforms = ['pc', 'psn', 'xbl'];
-const regions = ['us', 'eu', 'kr', 'cn'];
+const platforms = ['PC', 'PSN', 'XBL'];
+const regions = ['US', 'EU', 'KR', 'CN'];
 
 module.exports = {
   platform: {

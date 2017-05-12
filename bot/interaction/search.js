@@ -50,6 +50,7 @@ module.exports = (bot) => {
     const askRegion = (convo) => {
       convo.ask(quickReplies.region, (payload, convo, data) => {
         const region = payload.message.text;
+        console.log(`Region selectionné : ${region}`);
         convo.set('platform', region);
         convo.sendTypingIndicator(1000).then(() => getStats(convo));
       });
@@ -58,6 +59,7 @@ module.exports = (bot) => {
     const askPlatform = (convo) => {
       convo.ask(quickReplies.platform, (payload, convo, data) => {
         const platform = payload.message.text;
+        console.log(`Plateforme selectionné : ${platform}`);
         convo.set('platform', platform);
         convo.sendTypingIndicator(1000).then(() => {
           if (platform === 'pc') { return askRegion(convo); }
