@@ -4,7 +4,7 @@ const quickReplies = require('../quickReplies');
 // TODO: Rewrite this shit.
 
 // model: keywords pc|xbl|psn
-const instruction = /^(\s*)((re)?chercher*|search|find)(\s*)(([^ ]{3,12})#\d{4}(\s*)|[a-zA-Z0-9 ]{1,15}|[a-zA-Z0-9_-]{3,16})(\s*)$/;
+const instruction = /^(\s*)((re)?chercher*|search|find)(\s*)(([^ ]{3,12})#\d{4,5}(\s*)|[a-zA-Z0-9 ]{1,15}|[a-zA-Z0-9_-]{3,16})(\s*)$/i;
 
 module.exports = (bot) => {
   bot.hear(instruction, (payload, chat) => {
@@ -15,18 +15,17 @@ module.exports = (bot) => {
 
     const generateModel = (convo, data) => {
       const username = data.username;
-      const { rank, img } = data.competitive;
+      const { rank, rank_img } = data.competitive;
       const { wins, lost } = data.games.competitive;
-      const ratio = wins / lost;
       const platform = convo.get('platform');
-      const region = convo.get('platform');
-      const pseudo = convo.get('platform');
+      const region = convo.get('region');
+      const pseudo = convo.get('pseudo');
       const url = `https://masteroverwatch.com/profile/${platform}/${region}/${pseudo}`;
       return [
         {
           title: username,
-          image_url: img,
-          subtitle: `Rank: ${rank}. Ratio: ${ratio}`,
+          image_url: rank_img,
+          subtitle: `Rank: ${rank}. ${wins}w - ${lost}l`,
           buttons: [
             {
               type: 'web_url',

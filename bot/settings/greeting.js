@@ -1,7 +1,7 @@
 const greeting = [
   {
     locale: 'default',
-    text: "Salut {{user_first_name}}, moi cest BotOW ! Je suis là pour donner des stats sur les joueurs d'Overwatch.",
+    text: "Salut {{user_first_name}}, moi cest BotOW ! Je suis là pour te donner des stats sur les joueurs d'Overwatch.",
   },
   {
     locale: 'en_US',
