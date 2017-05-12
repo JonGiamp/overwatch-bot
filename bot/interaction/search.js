@@ -1,17 +1,10 @@
 const fetch = require('node-fetch');
+const quickReplies = require('../quickReplies');
+
+// TODO: Rewrite this shit.
 
 // model: keywords pc|xbl|psn
 const instruction = /^(\s*)((re)?chercher*|search|find)(\s*)(([^ ]{3,12})#\d{4}(\s*)|[a-zA-Z0-9 ]{1,15}|[a-zA-Z0-9_-]{3,16})(\s*)$/;
-const quickReplies = {
-  platform: {
-    text: 'Sur quelle plate-forme je dois chercher ?',
-    quickReplies: ['pc', 'psn', 'xbl'],
-  },
-  region: {
-    text: 'Sur quelle region je dois chercher ?',
-    quickReplies: ['us', 'eu', 'kr', 'cn'],
-  },
-};
 
 module.exports = (bot) => {
   bot.hear(instruction, (payload, chat) => {
@@ -50,13 +43,13 @@ module.exports = (bot) => {
       const platform = convo.get('platform');
       const region = convo.get('region');
       const data = await fetchData(pseudo, platform, region);
-      const model = generateModel(data);
+      const model = generateModel(convo, data);
       await convo.sendGenericTemplate(model, { typing: true });
       convo.end();
     };
 
     const askRegion = (convo) => {
-      convo.ask(quickReplies.region, (payload, convo) => {
+      convo.ask(quickReplies.region, (payload, convo, data) => {
         const region = payload.message.text;
         convo.set('platform', region);
         convo.sendTypingIndicator(1000).then(() => getStats(convo));
@@ -64,7 +57,7 @@ module.exports = (bot) => {
     };
 
     const askPlatform = (convo) => {
-      convo.ask(quickReplies.platform, (payload, convo) => {
+      convo.ask(quickReplies.platform, (payload, convo, data) => {
         const platform = payload.message.text;
         convo.set('platform', platform);
         convo.sendTypingIndicator(1000).then(() => {
