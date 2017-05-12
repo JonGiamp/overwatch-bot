@@ -1,10 +1,8 @@
-const express = require('express');
+const app = require('express')();
 const Bootbot = require('bootbot');
 // const { accessToken, verifyToken, appSecret } = require('./bot/key');
 const { started, greeting, persistent } = require('./bot/settings');
 const { hello, search, help, presentation } = require('./bot/interaction');
-
-const app = express();
 
 const bot = new Bootbot({
   accessToken: 'EAAGJU2B3gHkBAPhQaPEHNNDVien0zfnCO2rTx0hDs2AssGeyaNZC2xLVM4i5iKDQZBW82z4Yv3O9FevA2iLKo3Tc3JPlZBdBaNpTzU8yoEUTPcMSsx7FNVteQ3jZA87Ycf9JwkEaYdVZCixpqADMMf8VZAsCSc0ZBfnSIgWHO5a1wZDZD',
