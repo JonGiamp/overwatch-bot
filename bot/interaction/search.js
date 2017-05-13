@@ -1,4 +1,4 @@
-// const fetch = require('node-fetch');
+const fetch = require('node-fetch');
 const quickReplies = require('../quickReplies');
 
 // model: keywords pc|xbl|psn
@@ -6,44 +6,44 @@ const instruction = /^(\s*)((re)?chercher*|search|find)(\s*)(([^ ]{3,12})#\d{4,5
 
 module.exports = (bot) => {
   bot.hear(instruction, (payload, chat) => {
-    // const fetchData = async (pseudo, platform, region) => {
-    //   const res = await fetch(`https://ow-api.herokuapp.com/profile/${platform}/${region}/${pseudo}`);
-    //   return res.json();
-    // };
-    //
-    // const generateModel = (convo, data) => {
-    //   const username = data.username;
-    //   const { rank, rank_img } = data.competitive;
-    //   const { wins, lost } = data.games.competitive;
-    //   const platform = convo.get('platform');
-    //   const region = convo.get('region');
-    //   const pseudo = convo.get('pseudo');
-    //   const url = `https://masteroverwatch.com/profile/${platform}/${region}/${pseudo}`;
-    //   return [
-    //     {
-    //       title: username,
-    //       image_url: rank_img,
-    //       subtitle: `Rank: ${rank}. ${wins}w - ${lost}l`,
-    //       buttons: [
-    //         {
-    //           type: 'web_url',
-    //           url,
-    //           title: 'Visiter son profil',
-    //         },
-    //       ],
-    //     },
-    //   ];
-    // };
+    const fetchData = async (pseudo, platform, region) => {
+      const res = await fetch(`https://ow-api.herokuapp.com/profile/${platform}/${region}/${pseudo}`);
+      const data = res.json();
+      console.log(data);
+      return data;
+    };
+
+    const generateModel = (convo, data) => {
+      const username = data.username;
+      const { rank, rank_img } = data.competitive;
+      const { wins, lost } = data.games.competitive;
+      const platform = convo.get('platform');
+      const region = convo.get('region');
+      const pseudo = convo.get('pseudo');
+      const url = `https://masteroverwatch.com/profile/${platform}/${region}/${pseudo}`;
+      return [
+        {
+          title: username,
+          image_url: rank_img,
+          subtitle: `Rank: ${rank}. ${wins}w - ${lost}l`,
+          buttons: [
+            {
+              type: 'web_url',
+              url,
+              title: 'Visiter son profil',
+            },
+          ],
+        },
+      ];
+    };
 
     const sendStats = async (convo) => {
       const pseudo = convo.get('pseudo');
       const platform = convo.get('platform');
       const region = convo.get('region');
-      // const data = await fetchData(pseudo, platform, region);
-      // const model = generateModel(convo, data);
-      // await convo.sendGenericTemplate(model, { typing: true });
-      // convo.end();
-      await convo.say(`Vous avez choisit le joueur ${pseudo} sur ${platform} dans la région ${region}`);
+      const data = await fetchData(pseudo, platform, region);
+      const model = generateModel(convo, data);
+      await convo.sendGenericTemplate(model, { typing: true });
       convo.end();
     };
 
@@ -62,7 +62,7 @@ module.exports = (bot) => {
         console.log(`Plateforme selectionné : ${platform}`);
         convo.set('platform', platform);
         convo.sendTypingIndicator(1000).then(() => {
-          if (platform === 'pc') {
+          if (platform === 'PC') {
             askRegion(convo);
           } else {
             convo.set('region', 'global');
@@ -73,7 +73,7 @@ module.exports = (bot) => {
     };
 
     chat.conversation((convo) => {
-      const data = payload.message.text.replace(/^(\s*)((re)?chercher*|search|find)(\s*)/, '');
+      const data = payload.message.text.replace(/^(\s*)((re)?chercher*|search|find)(\s*)/i, '');
       const isPSN = /^(([^ ]{3,12})#\d{4}(\s*))(\s*)$/.test(data);
       const pseudo = isPSN ? data.replace('#', '-') : data;
       console.log(pseudo);
