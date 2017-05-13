@@ -7,16 +7,19 @@ const instruction = /^(\s*)((re)?chercher*|search|find)(\s*)(([^ ]{3,12})#\d{4,5
 module.exports = (bot) => {
   bot.hear(instruction, (payload, chat) => {
     const fetchData = async (pseudo, platform, region) => {
-      const res = await fetch(`https://ow-api.herokuapp.com/profile/${platform}/${region}/${pseudo}`);
-      const data = res.json();
-      console.log(data);
-      return data;
+      try {
+        const res = await fetch(`https://ow-api.herokuapp.com/profile/${platform}/${region}/${pseudo}`);
+        const data = res.json();
+        return data;
+      } catch (e) {
+        return e;
+      }
     };
 
     const generateModel = (convo, data) => {
       const username = data.username;
       const { rank, rank_img } = data.competitive;
-      const { wins, lost } = data.games.competitive;
+      const { wins, played } = data.games.competitive;
       const platform = convo.get('platform');
       const region = convo.get('region');
       const pseudo = convo.get('pseudo');
@@ -25,7 +28,7 @@ module.exports = (bot) => {
         {
           title: username,
           image_url: rank_img,
-          subtitle: `Rank: ${rank}. ${wins}w - ${lost}l`,
+          subtitle: `Classement: ${rank}. ${played} parties en ranked - ${wins} victoires`,
           buttons: [
             {
               type: 'web_url',
@@ -41,9 +44,14 @@ module.exports = (bot) => {
       const pseudo = convo.get('pseudo');
       const platform = convo.get('platform');
       const region = convo.get('region');
-      const data = await fetchData(pseudo, platform, region);
-      const model = generateModel(convo, data);
-      await convo.sendGenericTemplate(model, { typing: true });
+      try {
+        const data = await fetchData(pseudo, platform, region);
+        console.log(`Fetch response : ${data}`);
+        const model = generateModel(convo, data);
+        await convo.sendGenericTemplate(model, { typing: true });
+      } catch (e) {
+        console.log(`Fetch error : ${e}`);
+      }
       convo.end();
     };
 
@@ -74,9 +82,9 @@ module.exports = (bot) => {
 
     chat.conversation((convo) => {
       const data = payload.message.text.replace(/^(\s*)((re)?chercher*|search|find)(\s*)/i, '');
-      const isPSN = /^(([^ ]{3,12})#\d{4}(\s*))(\s*)$/.test(data);
+      const isPSN = /^(([^ ]{3,12})#\d{4,5}(\s*))(\s*)$/i.test(data);
       const pseudo = isPSN ? data.replace('#', '-') : data;
-      console.log(pseudo);
+      console.log(`Pseudo selectionné : ${pseudo}`);
       convo.set('pseudo', pseudo);
       convo.sendTypingIndicator(1000).then(() => askPlatform(convo));
     });
