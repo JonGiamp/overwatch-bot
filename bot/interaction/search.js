@@ -40,6 +40,8 @@ module.exports = (bot) => {
       ];
     };
 
+    const sendError = () => chat.say('Je suis désolé, une erreur interne est arrivé :( si cela se reproduit, merci de le signaler');
+
     const sendStats = async (convo) => {
       const pseudo = convo.get('pseudo');
       const platform = convo.get('platform');
@@ -51,6 +53,7 @@ module.exports = (bot) => {
         await convo.sendGenericTemplate(model, { typing: true });
       } catch (e) {
         console.log(`Fetch error : ${e}`);
+        sendError();
       }
       convo.end();
     };
@@ -59,7 +62,7 @@ module.exports = (bot) => {
       convo.ask(quickReplies.region, (payload, convo, data) => {
         const region = payload.message.text;
         console.log(`Region selectionné : ${region}`);
-        convo.set('platform', region);
+        convo.set('platform', region.toLowerCase());
         convo.sendTypingIndicator(1000).then(() => sendStats(convo));
       });
     };
@@ -68,9 +71,9 @@ module.exports = (bot) => {
       convo.ask(quickReplies.platform, (payload, convo, data) => {
         const platform = payload.message.text;
         console.log(`Plateforme selectionné : ${platform}`);
-        convo.set('platform', platform);
+        convo.set('platform', platform.toLowerCase());
         convo.sendTypingIndicator(1000).then(() => {
-          if (platform === 'PC') {
+          if (platform === 'pc') {
             askRegion(convo);
           } else {
             convo.set('region', 'global');
