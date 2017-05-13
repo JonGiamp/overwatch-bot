@@ -9,8 +9,8 @@ module.exports = (bot) => {
     const fetchData = async (pseudo, platform, region) => {
       try {
         const res = await fetch(`https://ow-api.herokuapp.com/profile/${platform}/${region}/${pseudo}`);
-        const data = res.json();
-        return data;
+        if (res.statusText === 'OK') return res.json();
+        throw new Error(res.statusText);
       } catch (e) {
         return e;
       }
@@ -40,7 +40,14 @@ module.exports = (bot) => {
       ];
     };
 
-    const sendError = () => chat.say('Je suis désolé, une erreur interne est arrivé :( si cela se reproduit, merci de le signaler');
+    const sendError = (e) => {
+      if (e.message === 'Not Found') {
+        chat.say('Je ne trouve pas ce joueur, as-tu bien renseigné son identifiant ?');
+        chat.say('Si tu cherche un joueur PC, n\'oublie pas de renseigner son battletag ! Ex: pseudo#12345');
+      } else {
+        chat.say('Je suis désolé, une erreur interne est arrivé :(');
+      }
+    };
 
     const sendStats = async (convo) => {
       const pseudo = convo.get('pseudo');
@@ -48,12 +55,10 @@ module.exports = (bot) => {
       const region = convo.get('region');
       try {
         const data = await fetchData(pseudo, platform, region);
-        console.log(`Fetch response : ${data}`);
         const model = generateModel(convo, data);
         await convo.sendGenericTemplate(model, { typing: true });
       } catch (e) {
-        console.log(`Fetch error : ${e}`);
-        sendError();
+        sendError(e);
       }
       convo.end();
     };
@@ -61,7 +66,6 @@ module.exports = (bot) => {
     const askRegion = (convo) => {
       convo.ask(quickReplies.region, (payload, convo, data) => {
         const region = payload.message.text.toLowerCase();
-        console.log(`Region selectionné : ${region}`);
         convo.set('region', region);
         convo.sendTypingIndicator(1000).then(() => sendStats(convo));
       });
@@ -70,7 +74,6 @@ module.exports = (bot) => {
     const askPlatform = (convo) => {
       convo.ask(quickReplies.platform, (payload, convo, data) => {
         const platform = payload.message.text.toLowerCase();
-        console.log(`Plateforme selectionné : ${platform}`);
         convo.set('platform', platform);
         convo.sendTypingIndicator(1000).then(() => {
           if (platform === 'pc') {
@@ -87,7 +90,6 @@ module.exports = (bot) => {
       const data = payload.message.text.replace(/^(\s*)((re)?chercher*|search|find)(\s*)/i, '');
       const isPSN = /^(([^ ]{3,12})#\d{4,5}(\s*))(\s*)$/i.test(data);
       const pseudo = isPSN ? data.replace('#', '-') : data;
-      console.log(`Pseudo selectionné : ${pseudo}`);
       convo.set('pseudo', pseudo);
       convo.sendTypingIndicator(1000).then(() => askPlatform(convo));
     });

@@ -4,9 +4,7 @@ const { started, greeting, persistent } = require('./bot/settings');
 const { hello, search, help, uncatch } = require('./bot/interaction');
 
 // TODO:
-// - REWRITE SEARCH INTERACTION
-//    FIX Promise error, UnhandledPromiseRejectionWarning: Unhandled promise
-//    rejection (rejection id: 1): SyntaxError: Unexpected token N in JSON at position 0
+// - Module searh
 
 const bot = new Bootbot({
   accessToken,
