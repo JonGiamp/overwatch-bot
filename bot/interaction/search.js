@@ -17,7 +17,7 @@ module.exports = (bot) => {
 
     const fetchData = async ({ pseudo, platform, region }) => {
       try {
-        const res = await fetch(`https://ow-api.herokuapp.com/profile/${platform}/${region}/${pseudo}`);
+        const res = await fetch(`https://api-overwatch.herokuapp.com/profile/${platform}/${region}/${pseudo}`);
         if (res.statusText === 'OK') return res.json();
         throw new Error(res.statusText);
       } catch (e) {
@@ -29,7 +29,7 @@ module.exports = (bot) => {
       const { username, portrait } = data;
       const { rank } = data.competitive;
       const { wins, played } = data.games.competitive;
-      const url = `https://api-overwatch.herokuapp.com/profile/${pseudo}/${platform}/${region}`;
+      const url = `https://masteroverwatch.com/profile/${platform}/${region}${pseudo}`;
       return [
         {
           title: username,
