@@ -26,17 +26,14 @@ module.exports = (bot) => {
     };
 
     const generateModel = (convo, data) => {
-      const username = data.username;
-      const { rank, rank_img } = data.competitive;
+      const { username, portrait } = data;
+      const { rank } = data.competitive;
       const { wins, played } = data.games.competitive;
-      const platform = convo.get('platform');
-      const region = convo.get('region');
-      const pseudo = convo.get('pseudo');
-      const url = `https://masteroverwatch.com/profile/${platform}/${region}/${pseudo}`;
+      const url = `https://api-overwatch.herokuapp.com/profile/${convo.get('platform')}/${convo.get('region')}/${convo.get('pseudo')}`;
       return [
         {
           title: username,
-          image_url: rank_img,
+          image_url: portrait,
           subtitle: `Classement: ${rank}. ${played} parties en ranked - ${wins} victoires`,
           buttons: [
             {
@@ -50,11 +47,9 @@ module.exports = (bot) => {
     };
 
     const sendStats = async (convo) => {
-      const pseudo = convo.get('pseudo');
-      const platform = convo.get('platform');
-      const region = convo.get('region');
+      console.log(convo);
       try {
-        const data = await fetchData(pseudo, platform, region);
+        const data = await fetchData(convo.get('pseudo'), convo.get('platform'), convo.get('region'));
         const model = generateModel(convo, data);
         await convo.sendGenericTemplate(model, { typing: true });
       } catch (e) {
