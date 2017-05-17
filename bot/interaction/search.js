@@ -29,7 +29,7 @@ module.exports = (bot) => {
       const { username, portrait } = data;
       const { rank } = data.competitive;
       const { wins, played } = data.games.competitive;
-      const url = `https://masteroverwatch.com/profile/${platform}/${region}${pseudo}`;
+      const url = `https://masteroverwatch.com/profile/${platform}/${region}/${pseudo}`;
       return [
         {
           title: username,
