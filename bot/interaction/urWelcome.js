@@ -1,11 +1,11 @@
-const input = [/^bye/i, /^bonne(-| )+soirée/i, /^goo+d(-| )*bye/i];
+const input = [/^th(an)*ks/i, /^merci/i, /^thx/i];
 const gifs = [
-  '4d1267fbacc61e55a0f82c44ba16ec00',
-  '0b423064fb6f568772708a12daf98cd1',
-  '9448a1ba2729f3a2d999d66e5d188605',
-  'a6d4ffb42e9cfa929a337b7fd12398e1',
-  '4094a62736dab4837ced2ab59ec3f42d',
-  '3fc8075202ccb2455ba1db8f88c0f8d8',
+  '731ad2d8dea402e53c5a16d81a85769d',
+  '3f3ca66d9ff672d29d048bbaa3f92fa5',
+  'd3251d4c56a3e5831b3ebe6ae4f928b1',
+  '264be2dfac82adfcf63e1594cdda4572',
+  'df8eb98d0226cec034537f23fc034dec',
+  'afb01c005e4dc07bc78da4993635a3ca',
 ];
 
 const getRandGif = array => array[Math.floor(Math.random() * array.length)];

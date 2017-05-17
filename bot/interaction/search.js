@@ -71,9 +71,11 @@ module.exports = (bot) => {
       });
     };
 
+    const formatPlatform = text => text.replace('💻 ', '').replace('🎮 ', '').toLowerCase();
+
     const askPlatform = (convo) => {
       convo.ask(quickReplies.platform, (pay, conv) => {
-        const platform = pay.message.text.toLowerCase();
+        const platform = formatPlatform(pay.message.text);
         conv.set('platform', platform);
         if (platform === 'pc') {
           askRegion(conv);
