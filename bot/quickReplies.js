@@ -1,5 +1,42 @@
-const platforms = ['PC', 'PSN', 'XBL'];
-const regions = ['US', 'EU', 'KR', 'CN'];
+const platforms = [
+  {
+    content_type: 'text',
+    title: 'PC',
+    image_url: 'https://static.xx.fbcdn.net/images/emoji.php/v8/z46/1/32/1f4bb.png',
+  },
+  {
+    content_type: 'text',
+    title: 'PSN',
+    image_url: 'https://static.xx.fbcdn.net/images/emoji.php/v8/ze9/1/32/1f3ae.png',
+  },
+  {
+    content_type: 'text',
+    title: 'XBL',
+    image_url: 'https://static.xx.fbcdn.net/images/emoji.php/v8/ze9/1/32/1f3ae.png',
+  },
+];
+const regions = [
+  {
+    content_type: 'text',
+    title: 'US',
+    image_url: 'https://static.xx.fbcdn.net/images/emoji.php/v8/zcd/1/32/1f1fa_1f1f8.png',
+  },
+  {
+    content_type: 'text',
+    title: 'EU',
+    image_url: 'https://www.facebook.com/images/emoji.php/v8/ffe/1/28/1f1ea_1f1fa.png',
+  },
+  {
+    content_type: 'text',
+    title: 'KR',
+    image_url: 'https://static.xx.fbcdn.net/images/emoji.php/v8/z5b/1/32/1f1f0_1f1f7.png',
+  },
+  {
+    content_type: 'text',
+    title: 'CN',
+    image_url: 'https://static.xx.fbcdn.net/images/emoji.php/v8/z0/1/32/1f1e8_1f1f3.png',
+  },
+];
 
 module.exports = {
   platform: {
