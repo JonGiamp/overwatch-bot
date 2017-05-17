@@ -1,18 +1,15 @@
 const platforms = [
   {
     content_type: 'text',
-    title: 'PC',
-    image_url: 'https://static.xx.fbcdn.net/images/emoji.php/v8/z46/1/32/1f4bb.png',
+    title: '🎮 PSN',
   },
   {
     content_type: 'text',
-    title: 'PSN',
-    image_url: 'https://static.xx.fbcdn.net/images/emoji.php/v8/ze9/1/32/1f3ae.png',
+    title: '💻 PC',
   },
   {
     content_type: 'text',
-    title: 'XBL',
-    image_url: 'https://static.xx.fbcdn.net/images/emoji.php/v8/ze9/1/32/1f3ae.png',
+    title: '🎮 XBL',
   },
 ];
 const regions = [
@@ -40,11 +37,11 @@ const regions = [
 
 module.exports = {
   platform: {
-    text: 'Sur quelle plate-forme je dois chercher ?',
+    text: 'Sur quelle plate-forme je dois chercher ? 🔬',
     quickReplies: platforms,
   },
   region: {
-    text: 'Sur quelle region je dois chercher ?',
+    text: 'Sur quelle region je dois chercher ? 🌍',
     quickReplies: regions,
   },
 };

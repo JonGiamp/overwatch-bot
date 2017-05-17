@@ -6,12 +6,12 @@ const instruction = /^(\s*)((re)?chercher*|search|find)(\s*)(([^ ]{3,12})#\d{4,5
 
 module.exports = (bot) => {
   bot.hear(instruction, (payload, chat) => {
-    const sendError = (message) => {
+    const sendError = async (message) => {
       if (message === 'Not Found') {
-        chat.say('Je ne trouve pas ce joueur, as-tu bien renseigné son identifiant ?');
-        chat.say('Si tu cherche un joueur PC, n\'oublie pas de renseigner son battletag ! Ex: pseudo#12345');
+        await chat.say('Désolé, le joueur est introuvable 😮');
+        await chat.say('Si c\'est un joueur PC, n\'oublie pas de mettre son battletag en entier ! Ex: pseudo#12345');
       } else {
-        chat.say('Je suis désolé, une erreur interne est arrivé :(');
+        await chat.say('Je suis désolé, une erreur interne est arrivé 😣😣');
       }
     };
 

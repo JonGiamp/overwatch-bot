@@ -1,10 +1,7 @@
 const Bootbot = require('bootbot');
 const { accessToken, verifyToken, appSecret } = require('./bot/key');
 const { started, greeting, persistent } = require('./bot/settings');
-const { hello, search, help, uncatch } = require('./bot/interaction');
-
-// TODO:
-// - Module searh
+const { hello, search, help, uncatch, bye } = require('./bot/interaction');
 
 const bot = new Bootbot({
   accessToken,
@@ -21,6 +18,7 @@ bot.module(persistent);
 bot.module(help);
 bot.module(search);
 bot.module(hello);
+bot.module(bye);
 bot.module(uncatch);
 
 bot.start(process.env.PORT || 1415);

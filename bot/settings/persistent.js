@@ -7,20 +7,26 @@ const persistent = [
     call_to_actions: [
       {
         type: 'postback',
-        title: 'Comment ça marche ?',
+        title: '🆘 Comment ça marche ?',
         payload: POST_HELP,
       },
       {
-        type: 'web_url',
-        title: 'Lien du groupe Facebook',
-        url: 'https://BLALLALBLABLALLBLL.fr',
-        webview_height_ratio: 'full',
-      },
-      {
-        type: 'web_url',
-        title: 'Lien du développeur',
-        url: 'https://twitter.com/JonGiamp',
-        webview_height_ratio: 'full',
+        title: '➡️ Lien externes',
+        type: 'nested',
+        call_to_actions: [
+          {
+            type: 'web_url',
+            title: '♥️ Lien Github du développeur',
+            url: 'https://github.com/JonGiamp/Overwatch-bot',
+            webview_height_ratio: 'full',
+          },
+          {
+            type: 'web_url',
+            title: '💙 Lien Twitter du développeur',
+            url: 'https://twitter.com/JonGiamp',
+            webview_height_ratio: 'full',
+          },
+        ],
       },
     ],
   },
@@ -30,20 +36,26 @@ const persistent = [
     call_to_actions: [
       {
         type: 'postback',
-        title: 'How it\'s works ?',
+        title: '🆘 How it\'s works ?',
         payload: POST_HELP,
       },
       {
-        type: 'web_url',
-        title: 'Facebook group link',
-        url: 'https://BLALLALBLABLALLBLL.fr',
-        webview_height_ratio: 'full',
-      },
-      {
-        type: 'web_url',
-        title: 'Developer link',
-        url: 'https://twitter.com/JonGiamp',
-        webview_height_ratio: 'full',
+        title: '➡️ External links',
+        type: 'nested',
+        call_to_actions: [
+          {
+            type: 'web_url',
+            title: '♥️ Github developer link',
+            url: 'https://github.com/JonGiamp/Overwatch-bot',
+            webview_height_ratio: 'full',
+          },
+          {
+            type: 'web_url',
+            title: '💙 Twitter developer link',
+            url: 'https://twitter.com/JonGiamp',
+            webview_height_ratio: 'full',
+          },
+        ],
       },
     ],
   },
