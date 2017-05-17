@@ -4,6 +4,7 @@ const { started, greeting, persistent } = require('./bot/settings');
 const { hello, search, help, uncatch, bye, urWelcome } = require('./bot/interaction');
 
 // TODO:
+// - FIX HELP PERSISTENT MENU
 
 const bot = new Bootbot({
   accessToken,
