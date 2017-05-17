@@ -17,7 +17,7 @@ const persistent = [
           {
             type: 'web_url',
             title: '♥️ Lien Github du développeur',
-            url: 'https://github.com/JonGiamp/Overwatch-bot',
+            url: 'https://github.com/JonGiamp',
             webview_height_ratio: 'full',
           },
           {
@@ -46,7 +46,7 @@ const persistent = [
           {
             type: 'web_url',
             title: '♥️ Github developer link',
-            url: 'https://github.com/JonGiamp/Overwatch-bot',
+            url: 'https://github.com/JonGiamp',
             webview_height_ratio: 'full',
           },
           {

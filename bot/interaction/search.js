@@ -15,7 +15,7 @@ module.exports = (bot) => {
       }
     };
 
-    const fetchData = async (pseudo, platform, region) => {
+    const fetchData = async ({ pseudo, platform, region }) => {
       try {
         const res = await fetch(`https://ow-api.herokuapp.com/profile/${platform}/${region}/${pseudo}`);
         if (res.statusText === 'OK') return res.json();
@@ -25,11 +25,11 @@ module.exports = (bot) => {
       }
     };
 
-    const generateModel = (convo, data) => {
+    const generateModel = ({ pseudo, platform, region }, data) => {
       const { username, portrait } = data;
       const { rank } = data.competitive;
       const { wins, played } = data.games.competitive;
-      const url = `https://api-overwatch.herokuapp.com/profile/${convo.get('platform')}/${convo.get('region')}/${convo.get('pseudo')}`;
+      const url = `https://api-overwatch.herokuapp.com/profile/${pseudo}/${platform}/${region}`;
       return [
         {
           title: username,
@@ -47,10 +47,9 @@ module.exports = (bot) => {
     };
 
     const sendStats = async (convo) => {
-      console.log(convo);
       try {
-        const data = await fetchData(convo.get('pseudo'), convo.get('platform'), convo.get('region'));
-        const model = generateModel(convo, data);
+        const data = await fetchData(convo.context);
+        const model = generateModel(convo.context, data);
         await convo.sendGenericTemplate(model, { typing: true });
       } catch (e) {
         sendError(e.message);
