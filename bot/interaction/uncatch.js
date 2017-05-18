@@ -5,10 +5,12 @@ const notifyUser = async (chat) => {
 
 module.exports = (bot) => {
   bot.on('message', (payload, chat, data) => {
-    if (!data.captured) notifyUser(chat);
+    // if (!data.captured) notifyUser(chat);
+    console.log(data);
   });
 
   bot.on('attachment', (payload, chat, data) => {
-    if (!data.captured) notifyUser(chat);
+    // if (!data.captured) notifyUser(chat);
+    console.log(data);
   });
 };
