@@ -1,5 +1,3 @@
-// const { POST_HELP } = require('../payload');
-
 const persistent = [
   {
     locale: 'default',
@@ -61,6 +59,4 @@ const persistent = [
   },
 ];
 
-module.exports = (bot) => {
-  bot.setPersistentMenu(persistent);
-};
+module.exports = bot => bot.setPersistentMenu(persistent);

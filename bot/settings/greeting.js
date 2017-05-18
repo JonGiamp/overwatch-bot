@@ -9,6 +9,4 @@ const greeting = [
   },
 ];
 
-module.exports = (bot) => {
-  bot.setGreetingText(greeting);
-};
+module.exports = bot => bot.setGreetingText(greeting);
