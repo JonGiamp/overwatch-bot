@@ -4,10 +4,7 @@ const { started, greeting, persistent } = require('./bot/settings');
 const { hello, search, help, uncatch, bye, urWelcome } = require('./bot/interaction');
 
 // TODO:
-// - FIX HELP PERSISTENT MENU ?
-// * Add default interaction with attachment, position etc...
-// * Add 'cancel' quick replies
-// - Think to workflow
+// - Better manage folder
 // - Units test
 
 const bot = new Bootbot({

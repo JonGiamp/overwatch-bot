@@ -47,6 +47,7 @@ module.exports = (bot) => {
     };
 
     const sendStats = async (convo) => {
+      chat.say('Ok, quelques petites secondes et je te trouve ça 😎👌');
       try {
         const data = await fetchData(convo.context);
         const model = generateModel(convo.context, data);
