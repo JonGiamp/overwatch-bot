@@ -59,9 +59,12 @@ module.exports = (bot) => {
 
     const askRegion = (convo) => {
       convo.ask(quickReplies.region, (pay, conv) => {
-        const region = pay.message.text.toLowerCase();
-        conv.set('region', region);
-        sendStats(conv);
+        if (pay.message.text === '🔙 Annuler' || pay.message.text === '🔙 Cancel') conv.end();
+        else {
+          const region = pay.message.text.toLowerCase();
+          conv.set('region', region);
+          sendStats(conv);
+        }
       });
     };
 
@@ -69,13 +72,15 @@ module.exports = (bot) => {
 
     const askPlatform = (convo) => {
       convo.ask(quickReplies.platform, (pay, conv) => {
-        const platform = formatPlatform(pay.message.text);
-        conv.set('platform', platform);
-        if (platform === 'pc') {
-          askRegion(conv);
-        } else {
-          conv.set('region', 'global');
-          sendStats(conv);
+        if (pay.message.text === '🔙 Annuler' || pay.message.text === '🔙 Cancel') conv.end();
+        else {
+          const platform = formatPlatform(pay.message.text);
+          conv.set('platform', platform);
+          if (platform === 'pc') askRegion(conv);
+          else {
+            conv.set('region', 'global');
+            sendStats(conv);
+          }
         }
       });
     };

@@ -11,6 +11,10 @@ const platforms = [
     content_type: 'text',
     title: '🎮 XBL',
   },
+  {
+    content_type: 'text',
+    title: '🔙 Annuler',
+  },
 ];
 const regions = [
   {
@@ -32,6 +36,10 @@ const regions = [
     content_type: 'text',
     title: 'CN',
     image_url: 'https://static.xx.fbcdn.net/images/emoji.php/v8/z0/1/32/1f1e8_1f1f3.png',
+  },
+  {
+    content_type: 'text',
+    title: '🔙 Cancel',
   },
 ];
 

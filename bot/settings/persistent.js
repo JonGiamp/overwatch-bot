@@ -1,4 +1,4 @@
-const { POST_HELP } = require('../payload');
+// const { POST_HELP } = require('../payload');
 
 const persistent = [
   {
@@ -6,9 +6,9 @@ const persistent = [
     composer_input_disabled: false,
     call_to_actions: [
       {
-        type: 'postback',
         title: '🆘 Comment ça marche ?',
-        payload: POST_HELP,
+        type: 'postback',
+        payload: 'POST_HELP',
       },
       {
         title: '➡️ Lien externes',
@@ -37,7 +37,7 @@ const persistent = [
       {
         type: 'postback',
         title: '🆘 How it\'s works ?',
-        payload: POST_HELP,
+        payload: 'POST_HELP',
       },
       {
         title: '➡️ External links',

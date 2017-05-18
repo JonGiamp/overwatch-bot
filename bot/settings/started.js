@@ -1,5 +1,4 @@
 /* eslint camelcase: OFF */
-
 module.exports = (bot) => {
   bot.setGetStartedButton((payload, chat) => {
     chat.getUserProfile().then(async ({ first_name }) => {
