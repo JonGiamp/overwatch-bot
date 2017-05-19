@@ -11,6 +11,7 @@ const getDivision = (url) => {
   const id = parseInt(number, 10) - 1;
   return divisions[id];
 };
+
 const fetchData = async ({ pseudo, platform, region }) => {
   try {
     const res = await fetch(`https://api-overwatch.herokuapp.com/profile/${platform}/${region}/${pseudo}`);
@@ -20,6 +21,7 @@ const fetchData = async ({ pseudo, platform, region }) => {
     throw e;
   }
 };
+
 const generateModel = ({ pseudo, platform, region }, data) => {
   const { username, portrait: image_url } = data;
   const { rank, rank_img } = data.competitive;
@@ -33,7 +35,7 @@ const generateModel = ({ pseudo, platform, region }, data) => {
     {
       title,
       image_url,
-      subtitle: `En division ${division} avec un classement de ${rank} - \r\n${played} parties jouées en ranked dont ${wins} victoires`,
+      subtitle: `Classement: ${rank} en ${division}\r\n${played} parties jouées - ${wins} victoires`,
       buttons: [
         {
           type: 'web_url',
@@ -44,6 +46,7 @@ const generateModel = ({ pseudo, platform, region }, data) => {
     },
   ];
 };
+
 const formatPlatform = text => text.replace('💻 ', '').replace('🎮 ', '').toLowerCase();
 
 module.exports = (bot) => {
