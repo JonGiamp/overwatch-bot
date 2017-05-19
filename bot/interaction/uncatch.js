@@ -9,4 +9,6 @@ module.exports = (bot) => {
   });
 
   bot.on('attachment', (payload, chat) => notifyUser(chat));
+
+  bot.on('postback', () => console.log('The Help Me button was clicked!'));
 };

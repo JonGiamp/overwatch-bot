@@ -19,12 +19,12 @@ bot.module(greeting);
 bot.module(persistent);
 
 // interaction
-bot.module(help);
 bot.module(search);
 bot.module(hello);
 bot.module(bye);
 bot.module(urWelcome);
 bot.module(howAreYou);
 bot.module(uncatch);
+bot.module(help);
 
 bot.start(process.env.PORT || 1415);

@@ -3,7 +3,7 @@ const quickReplies = require('../quickReplies');
 
 // model: keywords pc|xbl|psn
 const instruction = /^(\s*)((re)?chercher*|search|find)(\s*)(([^ ]{3,12})#\d{4,5}(\s*)|[a-zA-Z0-9 ]{1,15}|[a-zA-Z0-9_-]{3,16})(\s*)$/i;
-const divisions = ['bronze 🎈', 'silver 🔩', 'gold 🏆', 'platinum 🔮', 'diamond 💎', 'master 👑', 'grandmaster 👑'];
+const divisions = ['Bronze 🎈', 'Silver 🔩', 'Gold 🏆', 'Platinum 🔮', 'Diamond 💎', 'Master 👑', 'Grandmaster 👑'];
 
 const getDivision = (url) => {
   const match = /rank-\d/.exec(url);
@@ -26,14 +26,14 @@ const generateModel = ({ pseudo, platform, region }, data) => {
   const { wins, played } = data.games.competitive;
   const url = `https://masteroverwatch.com/profile/${platform}/${region}/${pseudo}`;
   const title = region === 'global' ?
-    `${username} - ${platform.toUpperCase()}` :
-    `${username} - ${platform.toUpperCase()} - ${region.toUpperCase()}`;
+    `${username} sur ${platform.toUpperCase()}` :
+    `${username} sur ${platform.toUpperCase()} en région ${region.toUpperCase()}`;
   const division = getDivision(rank_img);
   return [
     {
       title,
       image_url,
-      subtitle: `Classement ${rank} - Division ${division}\r\n${played} parties en ranked - ${wins} victoires`,
+      subtitle: `En division ${division} avec un classement de ${rank} - \r\n${played} parties jouées en ranked dont ${wins} victoires`,
       buttons: [
         {
           type: 'web_url',
