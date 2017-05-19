@@ -7,8 +7,6 @@ module.exports = (bot) => {
   bot.on('message', (payload, chat, data) => {
     if (!data.captured) notifyUser(chat);
   });
-
   bot.on('attachment', (payload, chat) => notifyUser(chat));
-
-  bot.on('postback', () => console.log('The Help Me button was clicked!'));
+  bot.on('postback', () => console.log('Postback button was clicked!'));
 };

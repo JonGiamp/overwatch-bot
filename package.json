@@ -1,6 +1,6 @@
 {
   "name": "Overwatch-bot",
-  "version": "0.1",
+  "version": "1",
   "description": "Ovewatch bot statistics",
   "engines": {
     "node": "7.9.0"
@@ -16,10 +16,15 @@
     "type": "git",
     "url": "https://github.com/JonGiamp/Overwatch-bot"
   },
+  "author": "JonGiamp",
   "keywords": [
     "node",
     "heroku",
-    "express"
+    "express",
+    "overwatch",
+    "bot",
+    "messenger",
+    "bootbot"
   ],
   "dependencies": {
     "bootbot": "^1.0.12",

@@ -1,4 +1,4 @@
-const greeting = [
+const output = [
   {
     locale: 'default',
     text: '🎉 Salut {{user_first_name}} 🎉 \r\n\r\n Envie d\'avoir des stats sur les joueurs d\'Overwatch ? 🔎',
@@ -9,4 +9,4 @@ const greeting = [
   },
 ];
 
-module.exports = bot => bot.setGreetingText(greeting);
+module.exports = bot => bot.setGreetingText(output);

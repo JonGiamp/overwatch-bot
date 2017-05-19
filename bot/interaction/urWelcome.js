@@ -1,4 +1,5 @@
-const input = [/^th(an)*ks/i, /^merci/i, /^thx/i];
+const { getRand } = require('../utility');
+
 const gifs = [
   '731ad2d8dea402e53c5a16d81a85769d',
   '3f3ca66d9ff672d29d048bbaa3f92fa5',
@@ -7,14 +8,12 @@ const gifs = [
   'df8eb98d0226cec034537f23fc034dec',
   'afb01c005e4dc07bc78da4993635a3ca',
 ];
-
-const getRandGif = array => array[Math.floor(Math.random() * array.length)];
+const input = [/^th(an)*ks/i, /^merci/i, /^thx/i];
+const output = {
+  attachment: 'image',
+  url: `https://media.tenor.co/images/${getRand(gifs)}/tenor.gif`,
+};
 
 module.exports = (bot) => {
-  bot.hear(input, (payload, chat) => {
-    chat.say({
-      attachment: 'image',
-      url: `https://media.tenor.co/images/${getRandGif(gifs)}/tenor.gif`,
-    });
-  });
+  bot.hear(input, (payload, chat) => chat.say(output));
 };

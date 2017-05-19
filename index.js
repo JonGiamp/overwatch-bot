@@ -1,7 +1,7 @@
 const Bootbot = require('bootbot');
 const { accessToken, verifyToken, appSecret } = require('./bot/key');
 const { started, greeting, persistent } = require('./bot/settings');
-const { hello, search, helpMessage, helpPostback, uncatch, bye, urWelcome, howAreYou } = require('./bot/interaction');
+const { hello, search, help, uncatch, bye, urWelcome, howAreYou } = require('./bot/interaction');
 
 // TODO:
 // - Think to workflow
@@ -19,8 +19,7 @@ bot.module(greeting);
 bot.module(persistent);
 
 // interaction
-bot.module(helpMessage);
-bot.module(helpPostback);
+bot.module(help);
 bot.module(search);
 bot.module(hello);
 bot.module(bye);
