@@ -1,10 +1,10 @@
 const Bootbot = require('bootbot');
 const { accessToken, verifyToken, appSecret } = require('./bot/key');
 const { started, greeting, persistent } = require('./bot/settings');
-const { hello, search, help, uncatch, bye, urWelcome } = require('./bot/interaction');
+const { hello, search, help, uncatch, bye, urWelcome, howAreYou } = require('./bot/interaction');
 
 // TODO:
-// - Better manage folder
+// - Think to workflow
 // - Units test
 
 const bot = new Bootbot({
@@ -24,6 +24,7 @@ bot.module(search);
 bot.module(hello);
 bot.module(bye);
 bot.module(urWelcome);
+bot.module(howAreYou);
 bot.module(uncatch);
 
 bot.start(process.env.PORT || 1415);

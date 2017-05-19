@@ -4,6 +4,7 @@ const help = require('./help');
 const uncatch = require('./uncatch');
 const bye = require('./bye');
 const urWelcome = require('./urWelcome');
+const howAreYou = require('./howAreYou');
 
 module.exports = {
   hello,
@@ -12,4 +13,5 @@ module.exports = {
   uncatch,
   bye,
   urWelcome,
+  howAreYou,
 };

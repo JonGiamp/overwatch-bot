@@ -3,6 +3,48 @@ const quickReplies = require('../quickReplies');
 
 // model: keywords pc|xbl|psn
 const instruction = /^(\s*)((re)?chercher*|search|find)(\s*)(([^ ]{3,12})#\d{4,5}(\s*)|[a-zA-Z0-9 ]{1,15}|[a-zA-Z0-9_-]{3,16})(\s*)$/i;
+const divisions = ['bronze 🎈', 'silver 🔩', 'gold 🏆', 'platinum 🔮', 'diamond 💎', 'master 👑', 'grandmaster 👑'];
+
+const getDivision = (url) => {
+  const match = /rank-\d/.exec(url);
+  const number = /\d/.exec(match[0]);
+  const id = parseInt(number, 10) - 1;
+  return divisions[id];
+};
+const fetchData = async ({ pseudo, platform, region }) => {
+  try {
+    const res = await fetch(`https://api-overwatch.herokuapp.com/profile/${platform}/${region}/${pseudo}`);
+    if (res.statusText === 'OK') return res.json();
+    throw new Error(res.statusText);
+  } catch (e) {
+    throw e;
+  }
+};
+const generateModel = ({ pseudo, platform, region }, data) => {
+  const { username, portrait: image_url } = data;
+  const { rank, rank_img } = data.competitive;
+  const { wins, played } = data.games.competitive;
+  const url = `https://masteroverwatch.com/profile/${platform}/${region}/${pseudo}`;
+  const title = region === 'global' ?
+    `${username} - ${platform.toUpperCase}` :
+    `${username} - ${platform.toUpperCase} - ${region.toUpperCase}`;
+  const division = getDivision(rank_img);
+  return [
+    {
+      title,
+      image_url,
+      subtitle: `Classement ${rank} - Division ${division}\r\n${played} parties en ranked - ${wins} victoires`,
+      buttons: [
+        {
+          type: 'web_url',
+          url,
+          title: 'Visiter son profil',
+        },
+      ],
+    },
+  ];
+};
+const formatPlatform = text => text.replace('💻 ', '').replace('🎮 ', '').toLowerCase();
 
 module.exports = (bot) => {
   bot.hear(instruction, (payload, chat) => {
@@ -13,37 +55,6 @@ module.exports = (bot) => {
       } else {
         await chat.say('Je suis désolé, une erreur interne est arrivé 😣😣');
       }
-    };
-
-    const fetchData = async ({ pseudo, platform, region }) => {
-      try {
-        const res = await fetch(`https://api-overwatch.herokuapp.com/profile/${platform}/${region}/${pseudo}`);
-        if (res.statusText === 'OK') return res.json();
-        throw new Error(res.statusText);
-      } catch (e) {
-        throw e;
-      }
-    };
-
-    const generateModel = ({ pseudo, platform, region }, data) => {
-      const { username, portrait } = data;
-      const { rank } = data.competitive;
-      const { wins, played } = data.games.competitive;
-      const url = `https://masteroverwatch.com/profile/${platform}/${region}/${pseudo}`;
-      return [
-        {
-          title: username,
-          image_url: portrait,
-          subtitle: `Classement: ${rank}. ${played} parties en ranked - ${wins} victoires`,
-          buttons: [
-            {
-              type: 'web_url',
-              url,
-              title: 'Visiter son profil',
-            },
-          ],
-        },
-      ];
     };
 
     const sendStats = async (convo) => {
@@ -68,8 +79,6 @@ module.exports = (bot) => {
         }
       });
     };
-
-    const formatPlatform = text => text.replace('💻 ', '').replace('🎮 ', '').toLowerCase();
 
     const askPlatform = (convo) => {
       convo.ask(quickReplies.platform, (pay, conv) => {
