@@ -3,10 +3,6 @@ const { accessToken, verifyToken, appSecret } = require('./bot/key');
 const { started, greeting, persistent } = require('./bot/settings');
 const { hello, search, help, uncatch, bye, urWelcome, howAreYou } = require('./bot/interaction');
 
-// TODO:
-// - Think to workflow
-// - Units test
-
 const bot = new Bootbot({
   accessToken,
   verifyToken,
